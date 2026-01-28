@@ -31,6 +31,6 @@ app.get('/dashboard_operatore', (req, res) => {
 });
 
 // Avvia il server
-app.listen(PORT, () => {
-  console.log(`Server in esecuzione su http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server in esecuzione sulla porta ${PORT}`);
 });

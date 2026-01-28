@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: logik-dashboard
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ARDUINO_IP
+        value: http://172.20.10.2
