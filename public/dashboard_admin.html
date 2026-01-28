@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>📊 Dashboard Admin</h1>
+    <button onclick="logout()">Logout</button>
+</header>
+
+<main>
+    <div class="sensor-card">
+        <h2>🌡️ Temperatura</h2>
+        <p><span id="temp">--</span> °C</p>
+    </div>
+
+    <div class="sensor-card">
+        <h2>👤 Operatore</h2>
+        <p id="opStatus">🔴 Offline</p>
+    </div>
+
+    <div class="sensor-card">
+        <h2>ℹ️ Info</h2>
+        <p>Sistema monitoraggio Arduino</p>
+        <p style="font-size: 12px; color: #999;">Ultimo aggiornamento: <span id="lastUpdate">--</span></p>
+    </div>
+</main>
+
+<script src="script.js"></script>
+<script>
+    // Verifica autorizzazione
+    if (localStorage.getItem("role") !== "admin") {
+        window.location.href = "/login";
+    }
+
+    // Aggiorna orario ultimo accesso
+    setInterval(() => {
+        const now = new Date();
+        document.getElementById("lastUpdate").textContent = now.toLocaleTimeString('it-IT');
+    }, 1000);
+</script>
+</body>
+</html>

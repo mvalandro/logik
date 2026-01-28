@@ -1,36 +1,61 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
-// Middleware per servire file statici
-app.use(express.static(path.join(__dirname)));
-
-// Middleware per il parsing JSON
+// ===== MIDDLEWARE =====
+app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Route principale
+// ===== API ROUTES =====
+
+// API: Configurazione del progetto
+app.get('/api/config', (req, res) => {
+  res.json({
+    arduinoIP: process.env.ARDUINO_IP || 'http://172.20.10.2',
+    environment: NODE_ENV
+  });
+});
+
+// API: Health check (per Render)
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'OK', timestamp: new Date().toISOString() });
+});
+
+// ===== PAGE ROUTES =====
+
+// Login page
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Route per login
 app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'login.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Route per dashboard admin
-app.get('/dashboard_admin', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dashboard_admin.html'));
+// Admin dashboard
+app.get('/dashboard/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'dashboard_admin.html'));
 });
 
-// Route per dashboard operatore
-app.get('/dashboard_operatore', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dashboard_operatore.html'));
+// Operatore dashboard
+app.get('/dashboard/operatore', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'dashboard_operatore.html'));
 });
 
-// Avvia il server
+// ===== ERROR HANDLING =====
+app.use((req, res) => {
+  res.status(404).json({ error: 'Pagina non trovata' });
+});
+
+// ===== START SERVER =====
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server in esecuzione sulla porta ${PORT}`);
+  console.log(`✅ Server avviato sulla porta ${PORT}`);
+  console.log(`📍 Ambiente: ${NODE_ENV}`);
+  console.log(`🔗 URL: http://localhost:${PORT}`);
 });

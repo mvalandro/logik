@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Operatore</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="setOperatoreOnline(true)">
+
+<header>
+    <h1>⚙️ Dashboard Operatore</h1>
+    <button onclick="logout()">Logout</button>
+</header>
+
+<main>
+    <div class="sensor-card">
+        <h2>🌡️ Temperatura</h2>
+        <p><span id="temp">--</span> °C</p>
+    </div>
+
+    <div class="sensor-card">
+        <h2>🌀 Ventole</h2>
+        <button id="fanBtn" onclick="toggleVentole()">ACCENDI</button>
+        <p id="fanStatus">🔴 Spente</p>
+    </div>
+
+    <div class="sensor-card">
+        <h2>📡 Stato</h2>
+        <p>🟢 Connesso</p>
+        <p style="font-size: 12px; color: #999;">ID: <span id="sessionId">-</span></p>
+    </div>
+</main>
+
+<script src="script.js"></script>
+<script>
+    // Verifica autorizzazione
+    if (localStorage.getItem("role") !== "operatore") {
+        window.location.href = "/login";
+    }
+
+    // Genera session ID
+    document.getElementById("sessionId").textContent = Math.random().toString(36).substr(2, 9);
+
+    // Disconnessione dopo 15 minuti di inattività
+    let inactivityTimer;
+    function resetInactivityTimer() {
+        clearTimeout(inactivityTimer);
+        inactivityTimer = setTimeout(() => {
+            console.log("Sessione scaduta per inattività");
+            logout();
+        }, 15 * 60 * 1000);
+    }
+    document.addEventListener('mousemove', resetInactivityTimer);
+    document.addEventListener('keypress', resetInactivityTimer);
+    resetInactivityTimer();
+</script>
+</body>
+</html>
