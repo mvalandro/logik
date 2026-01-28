@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Sensori Arduino</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Collegamento al CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Monitoraggio Sensori</h1>
+    </header>
+
+    <main>
+        <div class="sensor-card">
+            <h2>Temperatura</h2>
+            <p><span id="temp">--</span> °C</p>
+        </div>
+
+        <div class="sensor-card">
+            <h2>Umidità</h2>
+            <p><span id="hum">--</span> %</p>
+        </div>
+
+        <div class="sensor-card">
+            <h2>Luminosità</h2>
+            <p><span id="light">--</span></p>
+        </div>
+    </main>
+
+    <!-- Collegamento al JS -->
+    <script src="script.js"></script>
+</body>
+</html>

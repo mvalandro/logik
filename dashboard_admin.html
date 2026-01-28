@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Dashboard Admin</h1>
+    <button onclick="logout()">Logout</button>
+</header>
+
+<main>
+    <div class="sensor-card">
+        <h2>Temperatura</h2>
+        <p><span id="temp">--</span> °C</p>
+    </div>
+
+    <div class="sensor-card">
+        <h2>Operatore</h2>
+        <p id="opStatus">Offline</p>
+    </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

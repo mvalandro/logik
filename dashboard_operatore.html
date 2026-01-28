@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Operatore</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="setOperatoreOnline(true)">
+
+<header>
+    <h1>Dashboard Operatore</h1>
+    <button onclick="logout()">Logout</button>
+</header>
+
+<main>
+    <div class="sensor-card">
+    <h2>Temperatura</h2>
+    <p><span id="temp">--</span> °C</p>
+</div>
+
+<div class="sensor-card">
+    <h2>Ventole</h2>
+    <button id="fanBtn" onclick="toggleVentole()">ACCENDI</button>
+    <p id="fanStatus">Spente</p>
+</div>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
