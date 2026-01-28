@@ -15,6 +15,21 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// Route per login
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'login.html'));
+});
+
+// Route per dashboard admin
+app.get('/dashboard_admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dashboard_admin.html'));
+});
+
+// Route per dashboard operatore
+app.get('/dashboard_operatore', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dashboard_operatore.html'));
+});
+
 // Avvia il server
 app.listen(PORT, () => {
   console.log(`Server in esecuzione su http://localhost:${PORT}`);

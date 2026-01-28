@@ -11,11 +11,11 @@ function login() {
     if (user === "operatore" && pass === "1234") {
         localStorage.setItem("role", "operatore");
         localStorage.setItem("operatoreOnline", "true");
-        window.location.href = "dashboard_operatore.html";
+        window.location.href = "/dashboard_operatore";
     }
     else if (user === "admin" && pass === "admin") {
         localStorage.setItem("role", "admin");
-        window.location.href = "dashboard_admin.html";
+        window.location.href = "/dashboard_admin";
     }
     else {
         document.getElementById("error").textContent = "Credenziali errate";
@@ -26,7 +26,7 @@ function login() {
 function logout() {
     localStorage.removeItem("role");
     localStorage.setItem("operatoreOnline", "false");
-    window.location.href = "login.html";
+    window.location.href = "/login";
 }
 
 
